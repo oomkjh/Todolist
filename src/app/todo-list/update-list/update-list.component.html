@@ -1,0 +1,67 @@
+<div class="container">
+  <section class="py-5 text-center bg-light">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Edit List</h1>
+        <p>
+          <a [routerLink]="['/']" class="btn btn-success my-2">Back</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <div class="py-4">
+    <form
+      id="fromEditList"
+      name="fromEditList"
+      #listData="ngForm"
+      (ngSubmit)="updateList(listData.value)"
+    >
+      <div class="form-group mt-4">
+        <label for="title">Title :</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          placeholder="List title"
+          name="title"
+          ngModel
+          #title="ngModel"
+          required
+          [(ngModel)]="editlist.list_title"
+        />
+        <div class="alert alert-danger" *ngIf="title.touched && !title.valid">
+          <div *ngIf="title.errors?.required">title is required.</div>
+        </div>
+      </div>
+      <div class="form-group mt-4">
+        <label for="description">Description :</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          placeholder="List description"
+          name="description"
+          ngModel
+          #description="ngModel"
+          required
+          [(ngModel)]="editlist.list_description"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="description.touched && !description.valid"
+        >
+          <div *ngIf="description.errors?.required">
+            description is required.
+          </div>
+        </div>
+      </div>
+      <button
+        [disabled]="listData.invalid"
+        type="submit"
+        class="btn btn-primary mt-4"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+</div>
