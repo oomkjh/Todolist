@@ -23,6 +23,10 @@ export class MyListPageComponent implements OnInit {
     this.getList();
   }
 
+  add() {
+    this.router.navigate(['add-list'], { replaceUrl: true });
+  }
+
   chcekBox(checkList: any) {
     let list: any;
     this.listService.getList().subscribe(async (data) => {
